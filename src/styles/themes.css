@@ -1,0 +1,14 @@
+/* ── Light Theme ── */
+.theme-light {
+  --color-bg-primary: #E8E4DF;
+  --color-bg-secondary: #F5F1EC;
+  --color-bg-tertiary: #D8D4CF;
+  --color-silver: #8A8A8A;
+  --color-silver-light: #6A6A6A;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #4A4A4A;
+  --color-text-muted: #888;
+  --color-accent-dim: rgba(29, 185, 84, 0.15);
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-strong: 0 4px 16px rgba(0, 0, 0, 0.15);
+}

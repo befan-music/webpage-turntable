@@ -1,0 +1,32 @@
+/* ── Tonearm ── */
+.tonearm {
+  transform-origin: 765px 85px;
+  cursor: grab;
+  transition: filter var(--transition-fast);
+}
+
+.tonearm:active,
+.tonearm.is-dragging {
+  cursor: grabbing;
+}
+
+.tonearm:focus-visible {
+  outline: none;
+}
+
+.tonearm:focus-visible .tonearm__arm {
+  stroke: var(--color-accent);
+}
+
+/* Arm components */
+.tonearm__arm {
+  transition: stroke var(--transition-fast);
+}
+
+.tonearm__needle-tip {
+  transition: fill var(--transition-fast);
+}
+
+.tonearm.is-over-groove .tonearm__needle-tip {
+  fill: var(--color-accent);
+}

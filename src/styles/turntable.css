@@ -1,0 +1,78 @@
+/* ── Turntable SVG ── */
+.turntable-svg {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+/* ── Platter Spin ── */
+.platter {
+  animation: platter-spin var(--platter-spin-duration) linear infinite;
+  transform-origin: 400px 350px;
+  will-change: transform;
+}
+
+.platter--slow {
+  animation-duration: 24s;
+}
+
+/* ── Platter Well ── */
+.platter-well {
+  filter: drop-shadow(inset 0 0 10px rgba(0,0,0,0.5));
+}
+
+/* ── Groove Rings ── */
+.groove-ring {
+  transition: stroke var(--transition-standard), opacity var(--transition-standard);
+  pointer-events: none;
+}
+
+.groove-ring--highlighted {
+  stroke: var(--color-accent) !important;
+  opacity: 1 !important;
+  stroke-width: 2;
+  filter: url(#groove-glow);
+}
+
+.groove-ring--active {
+  stroke: var(--color-accent) !important;
+  opacity: 0.8 !important;
+  stroke-width: 1.5;
+}
+
+.groove-ring__hitarea {
+  pointer-events: none;
+  cursor: pointer;
+}
+
+/* ── Groove Labels ── */
+.groove-label {
+  font-family: var(--font-family);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  fill: var(--color-text-secondary);
+  opacity: 0.25;
+  transition: opacity var(--transition-standard), fill var(--transition-standard);
+  pointer-events: none;
+  user-select: none;
+}
+
+.groove-label--highlighted {
+  opacity: 0.9;
+  fill: var(--color-accent);
+}
+
+.groove-label--active {
+  opacity: 1;
+  fill: var(--color-accent);
+  filter: drop-shadow(0 0 6px var(--color-accent-dim));
+}
+
+/* ── Chassis ── */
+.chassis {
+  /* Fallback if gradient fails */
+  fill: var(--color-bg-primary);
+}
