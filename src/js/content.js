@@ -70,7 +70,57 @@ export function loadContent(sectionId) {
   if (contentBody) {
     contentBody.classList.remove('slider__body--revealing');
     contentBody.innerHTML = html;
+    // Initialize section-specific interactive elements
+    initSectionInteractivity(sectionId);
   }
+}
+
+/**
+ * Initialize interactive elements after section HTML is injected.
+ */
+function initSectionInteractivity(sectionId) {
+  if (sectionId === 'portfolio') initPortfolioNav();
+}
+
+/**
+ * Portfolio stacked-deck navigation.
+ * All cards are full-size, layered on top of each other.
+ * Arrows cycle which card is on top; behind-cards peek out with offset.
+ */
+function initPortfolioNav() {
+  const cards = [...document.querySelectorAll('.pf-card')];
+  const upBtn = document.getElementById('pf-nav-up');
+  const downBtn = document.getElementById('pf-nav-down');
+  const indicator = document.getElementById('pf-nav-indicator');
+  if (!cards.length || !upBtn || !downBtn) return;
+
+  const total = cards.length;
+  let active = 0;
+
+  function setActive(index) {
+    active = Math.max(0, Math.min(total - 1, index));
+    cards.forEach((card, i) => {
+      const depth = i - active;
+      if (depth < 0) {
+        // Cards already passed — hide them
+        card.setAttribute('data-pf-depth', '');
+        card.classList.add('pf-card--hidden');
+        card.style.zIndex = 0;
+      } else {
+        card.classList.remove('pf-card--hidden');
+        card.setAttribute('data-pf-depth', Math.min(depth, 3));
+        card.style.zIndex = total - depth;
+      }
+    });
+    if (indicator) indicator.textContent = `${active + 1} / ${total}`;
+    upBtn.disabled = active === 0;
+    downBtn.disabled = active === total - 1;
+  }
+
+  upBtn.addEventListener('click', () => setActive(active - 1));
+  downBtn.addEventListener('click', () => setActive(active + 1));
+
+  setActive(0);
 }
 
 /**

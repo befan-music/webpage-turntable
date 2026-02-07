@@ -1,55 +1,76 @@
 <div class="section section--portfolio">
-  <div class="portfolio-grid">
-    <article class="portfolio-card">
-      <h4 class="portfolio-card__title">Music Streaming Market Analysis</h4>
-      <p class="portfolio-card__desc">
-        Deep-dive into the competitive landscape of audio streaming, with strategic
-        recommendations for differentiation through podcast-music convergence.
-      </p>
-      <div class="portfolio-card__tags">
-        <span class="tag">Strategy</span>
-        <span class="tag">Market Research</span>
-        <span class="tag">Presentation</span>
+  <div class="pf-stack" id="pf-stack">
+
+    <!-- Card 1: Music TCG -->
+    <article class="pf-card" data-pf-index="0">
+      <div class="pf-card__body">
+        <span class="pf-card__counter">01</span>
+        <div class="pf-card__keywords">
+          <span>2024</span><span>Product</span><span>Mobile App</span>
+        </div>
+        <h4 class="pf-card__name">Music Trading Card Game</h4>
+        <p class="pf-card__desc">A TCG product for Gen-Z superfans in the music industry — drove product discovery and delivered core parity with a professionally-built competitor in 2 months.</p>
+        <a href="https://stickerapp-13112025.vercel.app/" target="_blank" rel="noopener" class="pf-card__link">View Project &rarr;</a>
+      </div>
+      <div class="pf-card__image">
+        <img src="/Pictures/CV-Pictures/TCG_Game.png" alt="Music Trading Card Game screenshot" loading="lazy" />
       </div>
     </article>
 
-    <article class="portfolio-card">
-      <h4 class="portfolio-card__title">E-commerce Conversion Optimization</h4>
-      <p class="portfolio-card__desc">
-        Led a team of 4 to redesign the checkout funnel for a D2C brand,
-        resulting in a 18% increase in completed purchases through A/B testing.
-      </p>
-      <div class="portfolio-card__tags">
-        <span class="tag">Product</span>
-        <span class="tag">A/B Testing</span>
-        <span class="tag">UX</span>
+    <!-- Card 2: Concert Memory Album -->
+    <article class="pf-card" data-pf-index="1">
+      <div class="pf-card__body">
+        <span class="pf-card__counter">02</span>
+        <div class="pf-card__keywords">
+          <span>2024</span><span>Product</span><span>Web App</span>
+        </div>
+        <h4 class="pf-card__name">Digital Concert Memory Album</h4>
+        <p class="pf-card__desc">A Gen-Z alternative to concertarchive.org — fully functional web app for uploading and sharing concert memories, built with AI-assisted workflow.</p>
+        <a href="https://sticker-vzrc.vercel.app/" target="_blank" rel="noopener" class="pf-card__link">View Project &rarr;</a>
+      </div>
+      <div class="pf-card__image">
+        <img src="/Pictures/CV-Pictures/Concert_App.jpg" alt="Digital Concert Memory Album screenshot" loading="lazy" />
       </div>
     </article>
 
-    <article class="portfolio-card">
-      <h4 class="portfolio-card__title">Data Dashboard for Campus Events</h4>
-      <p class="portfolio-card__desc">
-        Built a Tableau dashboard tracking attendance, engagement, and revenue
-        for 200+ events, adopted by the student union for budget planning.
-      </p>
-      <div class="portfolio-card__tags">
-        <span class="tag">Data</span>
-        <span class="tag">Tableau</span>
-        <span class="tag">Impact</span>
+    <!-- Card 3: Screenrecorder -->
+    <article class="pf-card" data-pf-index="2">
+      <div class="pf-card__body">
+        <span class="pf-card__counter">03</span>
+        <div class="pf-card__keywords">
+          <span>2025</span><span>Desktop App</span><span>Open Source</span>
+        </div>
+        <h4 class="pf-card__name">Local Desktop Screenrecorder</h4>
+        <p class="pf-card__desc">Offline screen recorder with no registration or watermarks. Built end-to-end from product requirements to a free GitHub release.</p>
+        <a href="https://github.com/befan-music/screenrecorder.git" target="_blank" rel="noopener" class="pf-card__link">View on GitHub &rarr;</a>
+      </div>
+      <div class="pf-card__image">
+        <img src="/Pictures/CV-Pictures/Screenrecorder_App.png" alt="Screenrecorder app screenshot" loading="lazy" />
       </div>
     </article>
 
-    <article class="portfolio-card">
-      <h4 class="portfolio-card__title">This Website</h4>
-      <p class="portfolio-card__desc">
-        An interactive turntable portfolio built from scratch with vanilla JS,
-        GSAP, SVG, and Web Audio API. You're looking at it right now.
-      </p>
-      <div class="portfolio-card__tags">
-        <span class="tag">JavaScript</span>
-        <span class="tag">Design</span>
-        <span class="tag">Creative</span>
+    <!-- Card 4: This Website -->
+    <article class="pf-card" data-pf-index="3">
+      <div class="pf-card__body">
+        <span class="pf-card__counter">04</span>
+        <div class="pf-card__keywords">
+          <span>2026</span><span>Creative</span><span>Web</span>
+        </div>
+        <h4 class="pf-card__name">Turntable Portfolio</h4>
+        <p class="pf-card__desc">This interactive vinyl turntable portfolio — built from scratch with vanilla JS, GSAP, SVG, and Web Audio API. You're looking at it right now.</p>
+        <a href="#" class="pf-card__link pf-card__link--disabled">You're here &rarr;</a>
+      </div>
+      <div class="pf-card__image">
+        <img src="/Pictures/CV-Pictures/Vinyl_Picture.jpg" alt="Turntable portfolio" loading="lazy" />
       </div>
     </article>
+
+    <!-- Navigation arrows (right side) -->
+    <nav class="pf-nav" id="pf-nav" aria-label="Portfolio navigation">
+      <button class="pf-nav__arrow pf-nav__arrow--up" id="pf-nav-up" aria-label="Previous project">&#9650;</button>
+      <span class="pf-nav__indicator" id="pf-nav-indicator">1 / 4</span>
+      <button class="pf-nav__arrow pf-nav__arrow--down" id="pf-nav-down" aria-label="Next project">&#9660;</button>
+    </nav>
+
   </div>
 </div>

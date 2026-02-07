@@ -1,8 +1,8 @@
 # Project Status — Interactive Vinyl Turntable Portfolio
 
 **Last updated:** February 2026
-**Build status:** All phases 1-12 complete. Slider tab redesign complete.
-**Bundle size:** 13KB HTML + 11KB CSS + 92KB JS (gzipped: ~41KB total)
+**Build status:** All phases 1-12 complete. Slider tab redesign complete. Vinyl photo + portfolio stacked deck complete.
+**Bundle size:** 13KB HTML + 14KB CSS + 102KB JS (gzipped: ~45KB total)
 
 ---
 
@@ -38,7 +38,8 @@ webpage/
 ├── Turntable.png           # Reference image (not used in production)
 ├── public/
 │   ├── favicon.svg         # Vinyl-record-themed SVG favicon
-│   └── audio/              # Reserved for optional audio assets
+│   ├── audio/              # Reserved for optional audio assets
+│   └── Pictures/CV-Pictures/  # Portfolio card images + vinyl center photo
 └── src/
     ├── main.js             # Entry point — imports all CSS + initializes all modules
     ├── styles/
@@ -47,7 +48,7 @@ webpage/
     │   ├── layout.css      # Fullscreen turntable layout
     │   ├── turntable.css   # Platter spin, groove ring states, groove labels, chassis
     │   ├── tonearm.css     # Tonearm transform-origin, cursor states, focus styles
-    │   ├── content.css     # Polygon tab + slide-up drawer + section content styles
+    │   ├── content.css     # Polygon tab + slide-up drawer + section content + portfolio deck styles
     │   ├── controls.css    # Control buttons (currently unused — controls removed from HTML)
     │   ├── animations.css  # Platter spin keyframes, dust particles, dust puff, reduced-motion
     │   ├── themes.css      # Light theme CSS variable overrides
@@ -58,7 +59,7 @@ webpage/
     │   ├── grooves.js      # Groove data model, hit-detection (getGrooveAtPoint), highlight/active
     │   ├── turntable.js    # Platter speed control (slowPlatter, resumePlatter, platterSpeedDip)
     │   ├── tonearm.js      # Custom drag handler, angle-to-groove mapping, needle drop, keyboard nav
-    │   ├── content.js      # Polygon tab label update, drawer toggle, content loading
+    │   ├── content.js      # Polygon tab label update, drawer toggle, content loading, portfolio deck nav
     │   ├── controls.js     # Control handlers (full mode, sound, theme, auto-play) — dormant
     │   ├── sound.js        # Web Audio API: synthesized needle thump, vinyl crackle, scratch
     │   ├── particles.js    # DOM-based floating dust particles + needle drop puff
@@ -66,7 +67,7 @@ webpage/
     └── content/
         ├── intro.html          # Personal introduction
         ├── cv.html             # CV / resume content
-        ├── portfolio.html      # Portfolio project cards
+        ├── portfolio.html      # Portfolio — stacked deck of 4 project cards
         ├── blog.html           # Blog post previews
         ├── miscellaneous.html  # Hobbies, playlists, fun facts
         ├── easter-egg-1.html   # Hidden groove: playlist link
@@ -144,6 +145,50 @@ The tab is a single full-width `<button>` element shaped with `clip-path: polygo
 2. `loadContent()` updates both tab labels (bottom + top), adds `.slider--has-content`, pre-loads HTML into drawer body
 3. User clicks bottom tab → `openDrawer()` adds `.slider--open`, drawer slides up
 4. User clicks top tab → `toggleDrawer()` calls `closeDrawer()`, drawer slides down
+5. After HTML injection, `initSectionInteractivity(sectionId)` initializes section-specific JS (e.g. portfolio deck nav)
+
+---
+
+## Vinyl Center Label (Photo)
+
+The center label of the vinyl SVG displays a circular-cropped photo (`Vinyl_Picture.jpg`) using:
+- `<clipPath id="label-clip">` with a circle at platter center (400, 350), r=60
+- `<image>` element with `preserveAspectRatio="xMidYMid slice"` for cover-fit cropping
+- Decorative stroke ring on top for the vinyl label edge
+
+---
+
+## Portfolio Stacked Deck
+
+Implemented in `portfolio.html` + `content.css` + `content.js`.
+
+### Design
+Full-size cards (1170×720px) stacked on top of each other like a deck. Only the front card is fully visible; behind-cards peek out with increasing offset, reduced opacity, and dimmed brightness. Green accent borders provide contrast between layers.
+
+### Cards (4 projects)
+1. **Music Trading Card Game** — TCG mobile app for Gen-Z music superfans
+2. **Digital Concert Memory Album** — Web app for uploading/sharing concert memories
+3. **Local Desktop Screenrecorder** — Offline screen recorder, open source on GitHub
+4. **Turntable Portfolio** — This website itself
+
+### Card structure
+Each `.pf-card` is a 2-column CSS grid (`1fr 1fr`):
+- **Left** (`.pf-card__body`): counter circle, keywords line, project name, description, link button
+- **Right** (`.pf-card__image`): cover-fit project screenshot
+
+### Stacking via `data-pf-depth` attribute
+| Depth | Transform | Opacity | Brightness |
+|-------|-----------|---------|------------|
+| 0 (front) | none | 1.0 | 1.0 |
+| 1 | translate(30px, -42px) scale(0.96) | 0.7 | 0.75 |
+| 2 | translate(60px, -84px) scale(0.92) | 0.5 | 0.55 |
+| 3 | translate(87px, -123px) scale(0.88) | 0.3 | 0.40 |
+
+### Navigation
+- Up/down arrow buttons positioned absolutely on the right rail (`right: -80px`)
+- `1 / 4` indicator between arrows
+- JS in `initPortfolioNav()` manages `data-pf-depth` and `z-index` per card
+- Cards already passed (depth < 0) are hidden with `.pf-card--hidden`
 
 ---
 
@@ -223,11 +268,11 @@ state = {
 ## Build Output
 
 ```
-dist/index.html        — 13.02 KB (gzip: 3.07 KB)
-dist/assets/index.css  — 10.69 KB (gzip: 2.99 KB)
-dist/assets/index.js   — 91.99 KB (gzip: 35.37 KB)
+dist/index.html        — 13.32 KB (gzip: 3.18 KB)
+dist/assets/index.css  — 14.35 KB (gzip: 3.69 KB)
+dist/assets/index.js   — 102.38 KB (gzip: 37.84 KB)
                          ──────────────────────────
-                         Total gzipped: ~41 KB
+                         Total gzipped: ~45 KB
 ```
 
 ---
@@ -245,6 +290,8 @@ dist/assets/index.js   — 91.99 KB (gzip: 35.37 KB)
 
 - [x] **Slider tab design:** Polygon clip-path hump with text-only label
 - [x] **Slide-up drawer:** Bottom-to-top slide animation with mirrored top tab to close
+- [x] **Vinyl center photo:** Circular-cropped photo in vinyl center label via SVG clipPath
+- [x] **Portfolio stacked deck:** 4 project cards with depth stacking, green borders, arrow navigation
 - [ ] **Re-add controls:** Sound, theme, auto-play as floating overlay or inside slider
 - [ ] **Deploy to Vercel**
 - [ ] **Personalization:** Replace placeholder content in `src/content/*.html`
