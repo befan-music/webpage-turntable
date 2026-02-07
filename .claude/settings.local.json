@@ -4,7 +4,12 @@
       "Bash(timeout 10 npx vite:*)",
       "Bash(npx vite build:*)",
       "Bash(npx vite:*)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(npm run build:*)",
+      "Bash(ping:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nRestructure layout: turntable on top, two split panels below\n\nMove from left/right split to top/bottom layout matching reference design.\nTurntable takes full width at top \\(~65vh\\), content and controls sit in two\nside-by-side panels below with visible margins/gaps between them.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }

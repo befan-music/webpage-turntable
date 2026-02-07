@@ -202,84 +202,18 @@
 
       </section>
 
-      <!-- ── Zone B: Content Playback ── -->
-      <main class="zone-b" id="content-zone" role="main" aria-live="polite" aria-label="Content area">
-        <div class="content-zone__inner">
-          <!-- Idle state -->
-          <div class="content-zone__idle" id="content-idle">
-            <p class="content-zone__prompt">Drop the needle to begin&hellip;</p>
-          </div>
-          <!-- Active state (hidden until groove selected) -->
-          <div class="content-zone__active" id="content-active" hidden>
-            <div class="content-zone__header">
-              <h2 id="content-title"></h2>
-              <button class="btn-expand" id="btn-expand" aria-label="Expand content area">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 2 2 2 2 6" />
-                  <polyline points="14 18 18 18 18 14" />
-                  <line x1="2" y1="2" x2="8" y2="8" />
-                  <line x1="12" y1="12" x2="18" y2="18" />
-                </svg>
-              </button>
-            </div>
-            <div class="content-zone__body" id="content-body"></div>
-          </div>
+      <!-- ── Content Slider ── -->
+      <div class="slider" id="slider">
+        <button class="slider__tab" id="slider-tab" aria-label="Open content drawer">
+          <span class="slider__tab-label" id="slider-label">DROP THE NEEDLE</span>
+        </button>
+        <div class="slider__drawer" id="slider-drawer">
+          <button class="slider__tab slider__tab--top" id="slider-close" aria-label="Close content drawer">
+            <span class="slider__tab-label" id="content-title"></span>
+          </button>
+          <div class="slider__body" id="content-body"></div>
         </div>
-      </main>
-
-      <!-- ── Zone C: Controls Sidebar ── -->
-      <aside class="zone-c" id="controls-zone" role="complementary" aria-label="Controls">
-        <nav class="controls" aria-label="Site controls">
-          <!-- Full Mode -->
-          <button class="control-btn" id="btn-fullmode" aria-label="Open current section in new tab" title="Full Mode">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M11 2h5v5" /><path d="M16 2L9 9" /><path d="M14 10v5a1 1 0 01-1 1H3a1 1 0 01-1-1V5a1 1 0 011-1h5" />
-            </svg>
-          </button>
-
-          <!-- Sound Toggle -->
-          <button class="control-btn" id="btn-sound" aria-label="Toggle sound effects" aria-pressed="false" title="Sound">
-            <svg class="icon-sound-off" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 3L5 6H2v6h3l4 3V3z" /><line x1="14" y1="6" x2="14" y2="12" opacity="0.3" />
-            </svg>
-            <svg class="icon-sound-on" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-              <path d="M9 3L5 6H2v6h3l4 3V3z" /><path d="M13 6.5c.8.8 1.2 1.9 1.2 3s-.4 2.2-1.2 3" /><path d="M15 4.5c1.3 1.3 2 3.1 2 5s-.7 3.7-2 5" />
-            </svg>
-          </button>
-
-          <!-- Theme Switch -->
-          <button class="control-btn" id="btn-theme" aria-label="Switch to light theme" aria-pressed="false" title="Theme">
-            <svg class="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M15.5 9.5A7 7 0 118.5 2.5a5 5 0 007 7z" />
-            </svg>
-            <svg class="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-              <circle cx="9" cy="9" r="3" /><path d="M9 1v2M9 15v2M1 9h2M15 9h2M3.3 3.3l1.4 1.4M13.3 13.3l1.4 1.4M3.3 14.7l1.4-1.4M13.3 4.7l1.4-1.4" />
-            </svg>
-          </button>
-
-          <!-- Auto-Play -->
-          <button class="control-btn" id="btn-autoplay" aria-label="Auto-play through all sections" aria-pressed="false" title="Auto-Play">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="9" r="7" /><polygon points="7,5.5 13,9 7,12.5" fill="currentColor" stroke="none" />
-            </svg>
-          </button>
-
-          <div class="controls__divider" role="separator"></div>
-
-          <!-- Contact Links -->
-          <a class="control-btn" href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="14" height="14" rx="2" /><path d="M6 8v4M6 6v.01M10 12V9.5a1.5 1.5 0 013 0V12" /><line x1="10" y1="8" x2="10" y2="12" />
-            </svg>
-          </a>
-
-          <a class="control-btn" href="mailto:hello@example.com" aria-label="Send email" title="Email">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="14" height="10" rx="1" /><polyline points="2,4 9,10 16,4" />
-            </svg>
-          </a>
-        </nav>
-      </aside>
+      </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>

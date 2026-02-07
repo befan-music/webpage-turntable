@@ -1,104 +1,157 @@
-/* ── Zone B: Content Area ── */
-.content-zone__inner {
+/* ══════════════════════════════════════════════
+   Slider — bottom tab + pull-up content drawer
+   ══════════════════════════════════════════════ */
+
+/* ── Slider container (always present, covers full viewport) ── */
+.slider {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Spacer pushes tab bar to bottom ── */
+.slider::before {
+  content: '';
+  flex: 1;
+}
+
+/* ── Bottom tab — full-width bar with raised center hump ── */
+.slider__tab {
+  pointer-events: auto;
+  position: relative;
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-lg) var(--space-xl);
-  overflow: hidden;
-}
-
-/* ── Idle State ── */
-.content-zone__idle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.content-zone__prompt {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-muted);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  animation: prompt-pulse 3s ease-in-out infinite;
-}
-
-@keyframes prompt-pulse {
-  0%, 100% { opacity: 0.4; }
-  50%      { opacity: 0.8; }
-}
-
-/* ── Active State ── */
-.content-zone__active {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-}
-
-.content-zone__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--color-bg-tertiary);
-  margin-bottom: var(--space-md);
   flex-shrink: 0;
-}
-
-#content-title {
-  font-size: var(--font-size-xl);
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--color-text-primary);
-}
-
-/* ── Expand Button ── */
-.btn-expand {
-  width: 36px;
-  height: 36px;
+  height: calc(5vh + 24px);
+  min-height: 60px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  border-radius: var(--radius-md);
-  color: var(--color-text-secondary);
-  transition: color var(--transition-fast), background-color var(--transition-fast);
+  padding-bottom: calc(1.5vh + 4px);
+  gap: var(--space-sm);
+  background-color: var(--color-bg-secondary);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+
+  /* Smooth hump shape: flat edges rise into a rounded bump in the center.
+     Uses polygon with many points to approximate the Bezier curve.
+     The hump spans roughly 35%-65% of the width, peaking at y=0. */
+  clip-path: polygon(
+    0% 40%,
+    /* Left flat edge */
+    35% 40%,
+    /* Concave rise into hump */
+    38% 38%, 40% 32%, 42% 22%, 44% 12%, 46% 5%, 48% 1%, 50% 0%,
+    /* Peak and down */
+    52% 1%, 54% 5%, 56% 12%, 58% 22%, 60% 32%, 62% 38%,
+    /* Concave fall back to flat */
+    65% 40%,
+    /* Right flat edge */
+    100% 40%,
+    /* Bottom edge */
+    100% 100%, 0% 100%
+  );
 }
 
-.btn-expand:hover {
-  color: var(--color-accent);
+.slider__tab:hover {
   background-color: var(--color-bg-tertiary);
 }
 
-/* ── Content Body ── */
-.content-zone__body {
+/* ── Top-of-drawer variant: hump hangs down from top ── */
+.slider__tab--top {
+  /* Flip the hump: flat top edge, curve hangs downward */
+  clip-path: polygon(
+    0% 0%, 100% 0%,
+    /* Right flat edge */
+    100% 60%,
+    65% 60%,
+    /* Concave fall into hump */
+    62% 62%, 60% 68%, 58% 78%, 56% 88%, 54% 95%, 52% 99%, 50% 100%,
+    /* Peak and back up */
+    48% 99%, 46% 95%, 44% 88%, 42% 78%, 40% 68%, 38% 62%,
+    /* Concave rise back to flat */
+    35% 60%,
+    /* Left flat edge */
+    0% 60%
+  );
+  align-items: flex-start;
+  padding-bottom: 0;
+  padding-top: calc(1.5vh + 4px);
+}
+
+.slider__tab-label {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color var(--transition-standard);
+}
+
+/* When a groove is active, label becomes bright */
+.slider--has-content .slider__tab-label {
+  color: var(--color-accent);
+}
+
+/* ── Drawer — pinned to bottom, slides up via transform ── */
+.slider__drawer {
+  pointer-events: auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: var(--color-bg-secondary);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform var(--transition-slow);
+}
+
+/* Open state: drawer slides up into view */
+.slider--open .slider__drawer {
+  transform: translateY(0);
+}
+
+.slider--open .slider__tab:not(.slider__tab--top) {
+  display: none;
+}
+
+.slider--open::before {
+  display: none;
+}
+
+/* ── Drawer body (scrollable content) ── */
+.slider__body {
   flex: 1;
   overflow-y: auto;
-  padding-right: var(--space-sm);
+  padding: var(--space-lg) var(--space-xl);
 }
 
 /* Custom scrollbar */
-.content-zone__body::-webkit-scrollbar {
+.slider__body::-webkit-scrollbar {
   width: 4px;
 }
 
-.content-zone__body::-webkit-scrollbar-track {
+.slider__body::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.content-zone__body::-webkit-scrollbar-thumb {
+.slider__body::-webkit-scrollbar-thumb {
   background: var(--color-bg-tertiary);
   border-radius: 2px;
 }
 
-.content-zone__body::-webkit-scrollbar-thumb:hover {
+.slider__body::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-muted);
 }
 
 /* ── Content Reveal Animation ── */
-.content-zone__body--revealing {
+.slider__body--revealing {
   animation: radial-reveal 0.6s ease-out forwards;
 }
 
@@ -107,7 +160,10 @@
   to   { clip-path: circle(150% at 50% 0%); opacity: 1; }
 }
 
-/* ── Section Content Styles ── */
+/* ══════════════════════════════════════════════
+   Section content styles (inside drawer body)
+   ══════════════════════════════════════════════ */
+
 .section {
   color: var(--color-text-secondary);
   line-height: 1.7;

@@ -1,9 +1,13 @@
 /**
- * Zone B content loading, expand/collapse, and content reveal.
+ * Slider-based content loading.
+ *
+ * - Tab at bottom 5% shows groove label when needle drops
+ * - Clicking tab opens drawer (95% content view)
+ * - Close button returns to turntable
  */
 
 import { GROOVES } from './grooves.js';
-import { setState, getState, onStateChange } from './state.js';
+import { setState, getState } from './state.js';
 
 // Import content partials as raw strings (Vite ?raw)
 import introHtml from '../content/intro.html?raw';
@@ -25,72 +29,83 @@ const contentMap = {
 };
 
 // DOM references
-let contentIdle, contentActive, contentTitle, contentBody, btnExpand;
+let slider, sliderTab, sliderLabel, sliderDrawer, sliderClose, contentTitle, contentBody;
 
 export function initContent() {
-  contentIdle = document.getElementById('content-idle');
-  contentActive = document.getElementById('content-active');
+  slider = document.getElementById('slider');
+  sliderTab = document.getElementById('slider-tab');
+  sliderLabel = document.getElementById('slider-label');
+  sliderDrawer = document.getElementById('slider-drawer');
+  sliderClose = document.getElementById('slider-close');
   contentTitle = document.getElementById('content-title');
   contentBody = document.getElementById('content-body');
-  btnExpand = document.getElementById('btn-expand');
 
-  if (btnExpand) {
-    btnExpand.addEventListener('click', toggleExpand);
+  if (sliderTab) {
+    sliderTab.addEventListener('click', openDrawer);
+  }
+
+  if (sliderClose) {
+    sliderClose.addEventListener('click', toggleDrawer);
   }
 }
 
 /**
- * Load a section's content into Zone B.
+ * Load a section's content — updates tab label and pre-loads drawer content.
  */
 export function loadContent(sectionId) {
   const html = contentMap[sectionId];
   if (!html) return;
 
-  // Find label
   const groove = GROOVES.find(g => g.id === sectionId);
   const label = groove ? groove.label : sectionId.toUpperCase();
 
-  // Zone B is always visible in the right panel — no class toggle needed
+  // Update tab label to show the groove name
+  if (sliderLabel) sliderLabel.textContent = label;
 
-  // Hide idle, show active
-  if (contentIdle) contentIdle.hidden = true;
-  if (contentActive) contentActive.hidden = false;
+  // Mark slider as having content (enables accent color on label)
+  if (slider) slider.classList.add('slider--has-content');
 
-  // Update title
+  // Pre-load content into drawer
   if (contentTitle) contentTitle.textContent = label;
-
-  // Update body with radial reveal
   if (contentBody) {
-    contentBody.classList.remove('content-zone__body--revealing');
+    contentBody.classList.remove('slider__body--revealing');
     contentBody.innerHTML = html;
-
-    // Trigger reflow to restart animation
-    void contentBody.offsetWidth;
-    contentBody.classList.add('content-zone__body--revealing');
   }
 }
 
 /**
- * Toggle expanded/collapsed state of Zone B.
+ * Open the content drawer.
  */
-function toggleExpand() {
-  const zoneB = document.querySelector('.zone-b');
-  const zoneA = document.querySelector('.zone-a');
-  if (!zoneB || !zoneA) return;
+function openDrawer() {
+  if (!slider || !getState().currentSection) return;
 
-  const isExpanded = !getState().isExpanded;
-  setState({ isExpanded });
+  slider.classList.add('slider--open');
+  setState({ isExpanded: true });
 
-  zoneB.classList.toggle('zone-b--expanded', isExpanded);
-  zoneA.classList.toggle('zone-a--dimmed', isExpanded);
-
-  // Update ARIA
-  if (btnExpand) {
-    btnExpand.setAttribute('aria-label', isExpanded ? 'Collapse content area' : 'Expand content area');
+  // Trigger reveal animation
+  if (contentBody) {
+    void contentBody.offsetWidth;
+    contentBody.classList.add('slider__body--revealing');
   }
+}
 
-  // Focus management
-  if (isExpanded && contentBody) {
-    contentBody.focus();
+/**
+ * Close the drawer, return to turntable view.
+ */
+function closeDrawer() {
+  if (!slider) return;
+
+  slider.classList.remove('slider--open');
+  setState({ isExpanded: false });
+}
+
+/**
+ * Toggle the drawer — the top tab acts as both open and close.
+ */
+function toggleDrawer() {
+  if (getState().isExpanded) {
+    closeDrawer();
+  } else {
+    openDrawer();
   }
 }
