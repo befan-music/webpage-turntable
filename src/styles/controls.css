@@ -1,9 +1,10 @@
-/* ── Controls (horizontal top-right bar) ── */
+/* ── Controls (right bottom panel, vertical layout) ── */
 .controls {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
+  padding: var(--space-md);
 }
 
 /* ── Control Button ── */
@@ -34,10 +35,10 @@
   background-color: var(--color-accent-dim);
 }
 
-/* ── Divider (vertical in horizontal layout) ── */
+/* ── Divider (horizontal in vertical layout) ── */
 .controls__divider {
-  width: 1px;
-  height: 20px;
+  width: 24px;
+  height: 1px;
   background-color: rgba(255, 255, 255, 0.1);
-  margin: 0 var(--space-xs);
+  margin: var(--space-xs) 0;
 }

@@ -1,18 +1,21 @@
-/* ── Left/Right Split Layout ── */
+/* ── Top/Bottom Split Layout ── */
+/* Turntable on top (~65vh), two panels below (~35vh) with visible margins */
+
 #app {
   position: relative;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   background-color: var(--color-bg-primary);
 }
 
-/* ── Zone A: Turntable (left half) ── */
+/* ── Zone A: Turntable (top section, full width) ── */
 .zone-a {
   position: relative;
-  width: 55%;
-  height: 100%;
+  width: 100%;
+  height: var(--zone-a-height);
   flex-shrink: 0;
   overflow: hidden;
   display: flex;
@@ -28,16 +31,26 @@
   pointer-events: none;
 }
 
-/* ── Zone B: Content Playback (right panel) ── */
+/* ── Bottom Panels Row ── */
+.bottom-panels {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  gap: 4px;
+  padding: 4px;
+  background-color: var(--color-bg-primary);
+}
+
+/* ── Zone B: Content Playback (left bottom panel) ── */
 .zone-b {
   position: relative;
-  flex: 1;
-  height: 100%;
+  flex: 7;
+  min-height: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: var(--color-bg-secondary);
-  border-left: 1px solid var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
   transition: opacity var(--transition-slow);
 }
 
@@ -46,26 +59,21 @@
   inset: 3vh 3vw;
   width: auto;
   height: auto;
+  flex: none;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-strong);
-  border-left: none;
   z-index: 100;
 }
 
-/* ── Zone C: Controls (top-right overlay) ── */
+/* ── Zone C: Controls Panel (right bottom panel) ── */
 .zone-c {
-  position: fixed;
-  top: var(--space-lg);
-  right: var(--space-lg);
-  z-index: 60;
+  position: relative;
+  flex: 3;
+  min-height: 0;
+  overflow: hidden;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: var(--space-xs);
-  padding: var(--space-xs) var(--space-sm);
-  background-color: rgba(15, 18, 21, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-lg);
+  justify-content: center;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
 }
