@@ -172,7 +172,7 @@
 .section h3 {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: #c0b8a8; 
   margin-bottom: var(--space-md);
 }
 
@@ -211,9 +211,37 @@
 
 /* ── CV Section ── */
 .cv-entry {
+  position: relative;
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-md);
   border-bottom: 1px solid var(--color-bg-tertiary);
+}
+
+/* Background image variant */
+.cv-entry--bg {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.cv-entry--bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.cv-entry__header a {
+  color: var(--color-text-primary);
+  border-bottom: none;
+}
+
+.cv-entry__header a:hover {
+  border-bottom-color: var(--color-text-primary);
 }
 
 .cv-entry__header {
@@ -225,7 +253,20 @@
   margin-bottom: var(--space-xs);
 }
 
+.cv-entry__right {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  text-align: right;
+}
+
 .cv-entry__date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.cv-entry__role {
+  display: block;
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
 }

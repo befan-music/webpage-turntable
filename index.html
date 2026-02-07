@@ -72,6 +72,11 @@
               </feMerge>
             </filter>
 
+            <!-- Center label photo clip -->
+            <clipPath id="label-clip">
+              <circle cx="400" cy="350" r="60" />
+            </clipPath>
+
             <!-- Groove label arc paths -->
             <path id="groove-path-intro"   d="M 400,350 m -255,0 a 255,255 0 1,1 510,0 a 255,255 0 1,1 -510,0" fill="none" />
             <path id="groove-path-cv"      d="M 400,350 m -210,0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0" fill="none" />
@@ -137,9 +142,11 @@
             <circle class="groove-ring__hitarea" data-groove="miscellaneous" cx="400" cy="350" r="84"
               fill="none" stroke="transparent" stroke-width="20" />
 
-            <!-- ── Center label area ── -->
-            <circle cx="400" cy="350" r="60" fill="url(#label-gradient)" />
-            <circle cx="400" cy="350" r="60" fill="none" stroke="#b0a898" stroke-width="0.5" opacity="0.6" />
+            <!-- ── Center label area (photo) ── -->
+            <image href="/Pictures/CV-Pictures/Vinyl_Picture.jpg"
+              x="340" y="290" width="120" height="120"
+              clip-path="url(#label-clip)" preserveAspectRatio="xMidYMid slice" />
+            <circle cx="400" cy="350" r="60" fill="none" stroke="#b0a898" stroke-width="1" opacity="0.6" />
           </g>
 
           <!-- ── Spindle (does not spin) ── -->
