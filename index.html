@@ -30,7 +30,7 @@
         </svg>
 
         <!-- Turntable SVG -->
-        <svg class="turntable-svg" viewBox="0 0 1000 700" aria-label="Vinyl turntable with 5 navigable groove sections" role="img">
+        <svg class="turntable-svg" viewBox="0 0 1000 700" aria-label="Vinyl turntable with 3 navigable groove sections" role="img">
           <defs>
             <!-- Platter surface gradient (dark vinyl) -->
             <radialGradient id="vinyl-gradient" cx="50%" cy="50%" r="50%">
@@ -81,8 +81,6 @@
             <path id="groove-path-intro"   d="M 400,350 m -255,0 a 255,255 0 1,1 510,0 a 255,255 0 1,1 -510,0" fill="none" />
             <path id="groove-path-cv"      d="M 400,350 m -210,0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0" fill="none" />
             <path id="groove-path-port"    d="M 400,350 m -165,0 a 165,165 0 1,1 330,0 a 165,165 0 1,1 -330,0" fill="none" />
-            <path id="groove-path-blog"    d="M 400,350 m -120,0 a 120,120 0 1,1 240,0 a 120,120 0 1,1 -240,0" fill="none" />
-            <path id="groove-path-misc"    d="M 400,350 m -84,0  a 84,84   0 1,1 168,0 a 84,84   0 1,1 -168,0" fill="none" />
           </defs>
 
           <!-- ── Chassis body ── -->
@@ -111,7 +109,7 @@
             <circle class="groove-ring groove-ring--easter" data-groove="easter-egg-1" cx="400" cy="350" r="276" fill="none" stroke="#1c1c1c" stroke-width="0.5" opacity="0.2" />
             <circle class="groove-ring groove-ring--easter" data-groove="easter-egg-2" cx="400" cy="350" r="45" fill="none" stroke="#1c1c1c" stroke-width="0.5" opacity="0.2" />
 
-            <!-- ═══ 5 Main groove rings ═══ -->
+            <!-- ═══ 3 Main groove rings ═══ -->
             <!-- Groove 1: INTRO (outermost) -->
             <circle class="groove-ring" data-groove="intro" cx="400" cy="350" r="255"
               fill="none" stroke="#333" stroke-width="1" opacity="0.6" />
@@ -130,17 +128,6 @@
             <circle class="groove-ring__hitarea" data-groove="portfolio" cx="400" cy="350" r="165"
               fill="none" stroke="transparent" stroke-width="20" />
 
-            <!-- Groove 4: BLOG -->
-            <circle class="groove-ring" data-groove="blog" cx="400" cy="350" r="120"
-              fill="none" stroke="#333" stroke-width="1" opacity="0.6" />
-            <circle class="groove-ring__hitarea" data-groove="blog" cx="400" cy="350" r="120"
-              fill="none" stroke="transparent" stroke-width="20" />
-
-            <!-- Groove 5: MISCELLANEOUS (innermost) -->
-            <circle class="groove-ring" data-groove="miscellaneous" cx="400" cy="350" r="84"
-              fill="none" stroke="#333" stroke-width="1" opacity="0.6" />
-            <circle class="groove-ring__hitarea" data-groove="miscellaneous" cx="400" cy="350" r="84"
-              fill="none" stroke="transparent" stroke-width="20" />
 
             <!-- ── Center label area (photo) ── -->
             <image href="/Pictures/CV-Pictures/Vinyl_Picture.jpg"
@@ -165,12 +152,6 @@
             <text class="groove-label" data-groove="portfolio">
               <textPath href="#groove-path-port" startOffset="15%" text-anchor="middle">PORTFOLIO</textPath>
             </text>
-            <text class="groove-label" data-groove="blog">
-              <textPath href="#groove-path-blog" startOffset="15%" text-anchor="middle">BLOG</textPath>
-            </text>
-            <text class="groove-label" data-groove="miscellaneous">
-              <textPath href="#groove-path-misc" startOffset="15%" text-anchor="middle">MISC</textPath>
-            </text>
           </g>
 
           <!-- ── Tonearm assembly ── -->
@@ -184,7 +165,7 @@
           </g>
 
           <!-- Rotating arm (rotates around pivot) -->
-          <g class="tonearm" id="tonearm" filter="url(#tonearm-shadow)" tabindex="0" role="slider" aria-label="Tonearm – drag to select a section" aria-valuemin="1" aria-valuemax="5" aria-valuenow="0" aria-valuetext="Parked">
+          <g class="tonearm" id="tonearm" filter="url(#tonearm-shadow)" tabindex="0" role="slider" aria-label="Tonearm – drag to select a section" aria-valuemin="1" aria-valuemax="3" aria-valuenow="0" aria-valuetext="Parked">
             <!-- Counterweight (behind pivot) -->
             <ellipse class="tonearm__counterweight" cx="765" cy="60" rx="10" ry="7" fill="#b0a898" />
             <ellipse cx="765" cy="58" rx="6" ry="4" fill="#c8c0b4" opacity="0.5" />

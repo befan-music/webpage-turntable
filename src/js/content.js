@@ -13,8 +13,6 @@ import { setState, getState } from './state.js';
 import introHtml from '../content/intro.html?raw';
 import cvHtml from '../content/cv.html?raw';
 import portfolioHtml from '../content/portfolio.html?raw';
-import blogHtml from '../content/blog.html?raw';
-import miscHtml from '../content/miscellaneous.html?raw';
 import egg1Html from '../content/easter-egg-1.html?raw';
 import egg2Html from '../content/easter-egg-2.html?raw';
 
@@ -22,8 +20,6 @@ const contentMap = {
   'intro': introHtml,
   'cv': cvHtml,
   'portfolio': portfolioHtml,
-  'blog': blogHtml,
-  'miscellaneous': miscHtml,
   'easter-egg-1': egg1Html,
   'easter-egg-2': egg2Html,
 };

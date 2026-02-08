@@ -18,8 +18,6 @@ export const GROOVES = [
   { id: 'intro',         label: 'INTRO',         radius: 255 },
   { id: 'cv',            label: 'CV',             radius: 210 },
   { id: 'portfolio',     label: 'PORTFOLIO',      radius: 165 },
-  { id: 'blog',          label: 'BLOG',           radius: 120 },
-  { id: 'miscellaneous', label: 'MISCELLANEOUS',  radius: 84  },
 ];
 
 export const EASTER_EGGS = [
