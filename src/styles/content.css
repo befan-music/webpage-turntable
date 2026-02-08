@@ -299,8 +299,8 @@
 
 .pf-stack {
   position: relative;
-  width: 1170px;
-  height: 720px;
+  width: 585px;
+  height: 360px;
   /* True center — auto margins on all sides, no right offset */
   margin: auto;
 }
@@ -326,21 +326,21 @@
 
 /* Behind +1 */
 .pf-card[data-pf-depth="1"] {
-  transform: translate(30px, -42px) scale(0.96);
+  transform: translate(18px, -25px) scale(0.96);
   opacity: 0.7;
   filter: brightness(0.75);
 }
 
 /* Behind +2 */
 .pf-card[data-pf-depth="2"] {
-  transform: translate(60px, -84px) scale(0.92);
+  transform: translate(36px, -50px) scale(0.92);
   opacity: 0.5;
   filter: brightness(0.55);
 }
 
 /* Behind +3 */
 .pf-card[data-pf-depth="3"] {
-  transform: translate(87px, -123px) scale(0.88);
+  transform: translate(52px, -74px) scale(0.88);
   opacity: 0.3;
   filter: brightness(0.4);
 }
@@ -360,7 +360,7 @@
 
 /* ── Card body (left half) ── */
 .pf-card__body {
-  padding: var(--space-2xl) var(--space-2xl);
+  padding: var(--space-lg) var(--space-lg);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -385,15 +385,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-full);
   border: 1.5px solid var(--color-accent);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-xs);
   font-weight: 600;
   color: var(--color-accent);
   flex-shrink: 0;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 /* ── Keywords line ── */
@@ -420,20 +420,20 @@
 
 /* ── Project name ── */
 .pf-card__name {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-base);
   font-weight: 700;
   color: var(--color-text-primary);
-  margin: 0 0 var(--space-sm) 0;
+  margin: 0 0 var(--space-xs) 0;
   line-height: 1.2;
 }
 
 /* ── Description ── */
 .pf-card__desc {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
-  line-height: 1.6;
-  margin-bottom: var(--space-lg);
-  max-width: 480px;
+  line-height: 1.5;
+  margin-bottom: var(--space-md);
+  max-width: 290px;
 }
 
 /* ── Link button ── */
@@ -441,10 +441,10 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: 10px 24px;
+  padding: 6px 16px;
   border: 1.5px solid var(--color-text-muted);
   border-radius: 999px;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -468,7 +468,7 @@
 /* ── Navigation arrows (right rail) ── */
 .pf-nav {
   position: absolute;
-  right: -80px;
+  right: -50px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 100;
@@ -482,8 +482,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-full);
   border: 1.5px solid var(--color-text-muted);
   background: transparent;
