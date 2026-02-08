@@ -75,7 +75,10 @@ export function loadContent(sectionId) {
  * Initialize interactive elements after section HTML is injected.
  */
 function initSectionInteractivity(sectionId) {
-  if (sectionId === 'portfolio') initPortfolioNav();
+  if (sectionId === 'portfolio') {
+    initPortfolioNav();
+    initPortfolioTabs();
+  }
 }
 
 /**
@@ -117,6 +120,52 @@ function initPortfolioNav() {
   downBtn.addEventListener('click', () => setActive(active + 1));
 
   setActive(0);
+}
+
+/**
+ * Portfolio card content-tab navigation.
+ * Each card has multiple panels (Description, Problem, Solution, etc.)
+ * switched via left/right arrows at the bottom of the card body.
+ */
+const TAB_LABELS = ['Description', 'Problem + Validation', 'Solution', 'Traction', 'MVP vs. Vision'];
+
+function initPortfolioTabs() {
+  const cards = [...document.querySelectorAll('.pf-card')];
+  cards.forEach(card => {
+    const panels = [...card.querySelectorAll('.pf-card__panel')];
+    const leftBtn = card.querySelector('.pf-card__tabs-arrow--left');
+    const rightBtn = card.querySelector('.pf-card__tabs-arrow--right');
+    const label = card.querySelector('.pf-card__tabs-label');
+    const leftTrack = card.querySelector('.pf-card__tabs-track:first-of-type .pf-card__tabs-progress');
+    const rightTrack = card.querySelector('.pf-card__tabs-track:last-of-type .pf-card__tabs-progress');
+    if (!panels.length || !leftBtn || !rightBtn) return;
+
+    const total = panels.length;
+    let current = 0;
+
+    function setTab(index) {
+      current = Math.max(0, Math.min(total - 1, index));
+      panels.forEach((p, i) => {
+        p.classList.toggle('pf-card__panel--active', i === current);
+      });
+      if (label) label.textContent = TAB_LABELS[current] || `Tab ${current + 1}`;
+      leftBtn.disabled = current === 0;
+      rightBtn.disabled = current === total - 1;
+
+      // Update progress tracks
+      if (leftTrack) {
+        leftTrack.style.width = current === 0 ? '0%' : `${(current / (total - 1)) * 100}%`;
+      }
+      if (rightTrack) {
+        rightTrack.style.width = current === total - 1 ? '0%' : `${((total - 1 - current) / (total - 1)) * 100}%`;
+      }
+    }
+
+    leftBtn.addEventListener('click', (e) => { e.stopPropagation(); setTab(current - 1); });
+    rightBtn.addEventListener('click', (e) => { e.stopPropagation(); setTab(current + 1); });
+
+    setTab(0);
+  });
 }
 
 /**
