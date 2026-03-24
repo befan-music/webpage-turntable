@@ -19,7 +19,8 @@ export function createGrooveRipple(radius) {
   circle.setAttribute('cy', PLATTER_CENTER.y);
   circle.setAttribute('r', radius);
   circle.setAttribute('fill', 'none');
-  circle.setAttribute('stroke', '#1DB954');
+  const accent = getComputedStyle(document.documentElement).getPropertyValue('--color-gold').trim() || '#FFD54F';
+  circle.setAttribute('stroke', accent);
   circle.setAttribute('stroke-width', '2');
   circle.setAttribute('opacity', '0.6');
 

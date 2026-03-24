@@ -38,6 +38,17 @@ export function initControls() {
   if (btnAutoplay) {
     btnAutoplay.addEventListener('click', toggleAutoPlay);
   }
+
+  // Color Mode Toggle (Navy vs Classic)
+  const btnColorToggle = document.getElementById('color-toggle');
+  if (btnColorToggle) {
+    // Restore saved color mode
+    const saved = localStorage.getItem('colorMode');
+    if (saved === 'classic') {
+      applyColorMode('classic');
+    }
+    btnColorToggle.addEventListener('click', toggleColorMode);
+  }
 }
 
 /** Open current section in a new tab */
@@ -58,12 +69,12 @@ function openFullMode() {
       <style>
         body {
           font-family: 'Inter', system-ui, sans-serif;
-          background: #0F1215; color: #F5F5F5;
+          background: #F5F3EF; color: #1A1A2E;
           max-width: 800px; margin: 2rem auto; padding: 0 1.5rem;
           line-height: 1.7;
         }
-        a { color: #1DB954; }
-        h1, h2, h3 { color: #F5F5F5; }
+        a { color: #002060; }
+        h1, h2, h3 { color: #1A1A2E; }
       </style>
     </head>
     <body>${contentBody.innerHTML}</body>
@@ -139,4 +150,23 @@ function toggleAutoPlay() {
   GROOVES.forEach((groove, i) => {
     autoPlayTimeline.call(() => moveToGroove(groove.id), null, i * 8);
   });
+}
+
+/** Toggle between Navy (default) and Classic color mode */
+function toggleColorMode() {
+  const isClassic = document.documentElement.classList.contains('theme-classic');
+  applyColorMode(isClassic ? 'navy' : 'classic');
+}
+
+function applyColorMode(mode) {
+  const label = document.getElementById('color-toggle-label');
+  if (mode === 'classic') {
+    document.documentElement.classList.add('theme-classic');
+    if (label) label.textContent = 'Navy';
+    localStorage.setItem('colorMode', 'classic');
+  } else {
+    document.documentElement.classList.remove('theme-classic');
+    if (label) label.textContent = 'Classic';
+    localStorage.setItem('colorMode', 'navy');
+  }
 }

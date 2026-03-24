@@ -1,14 +1,40 @@
-/* ── Light Theme ── */
-.theme-light {
-  --color-bg-primary: #E8E4DF;
-  --color-bg-secondary: #F5F1EC;
-  --color-bg-tertiary: #D8D4CF;
-  --color-silver: #8A8A8A;
-  --color-silver-light: #6A6A6A;
-  --color-text-primary: #1A1A1A;
-  --color-text-secondary: #4A4A4A;
+/* ── Classic Theme (original dark + green) ── */
+.theme-classic {
+  --color-bg-primary: #0F1215;
+  --color-bg-secondary: #1A1F24;
+  --color-bg-tertiary: #252B31;
+  --color-silver: #C0C0C0;
+  --color-silver-light: #E0E0E0;
+  --color-accent: #1DB954;
+  --color-accent-dim: rgba(29, 185, 84, 0.25);
+  --color-gold: #1DB954;
+  --color-gold-dim: rgba(29, 185, 84, 0.25);
+  --color-text-primary: #F5F5F5;
+  --color-text-secondary: #D0D0D0;
   --color-text-muted: #888;
-  --color-accent-dim: rgba(29, 185, 84, 0.15);
-  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-strong: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-strong: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
+
+/* ── Classic Theme SVG overrides (inline SVG colors) ── */
+.theme-classic #chassis-bg stop:nth-child(1) { stop-color: #1a2420; }
+.theme-classic #chassis-bg stop:nth-child(2) { stop-color: #151d19; }
+.theme-classic #chassis-bg stop:nth-child(3) { stop-color: #111915; }
+.theme-classic #vinyl-gradient stop:nth-child(1) { stop-color: #2a2a2a; }
+.theme-classic #vinyl-gradient stop:nth-child(2) { stop-color: #1a1a1a; }
+.theme-classic #vinyl-gradient stop:nth-child(3) { stop-color: #111; }
+.theme-classic #label-gradient stop:nth-child(1) { stop-color: #e8e0d4; }
+.theme-classic #label-gradient stop:nth-child(2) { stop-color: #c8bfb0; }
+.theme-classic #label-gradient stop:nth-child(3) { stop-color: #a89f90; }
+.theme-classic #spindle-gradient stop:nth-child(1) { stop-color: #e0d8cc; }
+.theme-classic #spindle-gradient stop:nth-child(2) { stop-color: #b8b0a0; }
+.theme-classic #spindle-gradient stop:nth-child(3) { stop-color: #908878; }
+.theme-classic .platter-well { fill: #0a0a0a; }
+.theme-classic .tonearm__pivot-base { fill: #c8c0b4; }
+.theme-classic .tonearm__arm { stroke: #c0b8a8; }
+.theme-classic .tonearm__headshell { fill: #c0b8a8; }
+.theme-classic .tonearm__counterweight { fill: #b0a898; }
+.theme-classic .tonearm__stylus { stroke: #a89f90; }
+.theme-classic .tonearm__needle-tip { fill: #d0c8bc; }
+.theme-classic .tonearm__pivot { fill: #d0c8bc; }
+.theme-classic .chassis { fill: #1a2420; }

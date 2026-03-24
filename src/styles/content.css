@@ -24,14 +24,14 @@
   position: relative;
   width: 100%;
   flex-shrink: 0;
-  height: calc(5vh + 24px);
-  min-height: 60px;
+  height: calc(4vh + 16px);
+  min-height: 44px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: calc(1.5vh + 4px);
+  padding-bottom: calc(1vh + 4px);
   gap: var(--space-sm);
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-tertiary);
   border: none;
   cursor: pointer;
   transition: background-color var(--transition-fast);
@@ -56,9 +56,6 @@
   );
 }
 
-.slider__tab:hover {
-  background-color: var(--color-bg-tertiary);
-}
 
 /* ── Top-of-drawer variant: hump hangs down from top ── */
 .slider__tab--top {
@@ -87,14 +84,15 @@
   font-size: var(--font-size-sm);
   font-weight: 600;
   letter-spacing: 3px;
-  text-transform: uppercase;
   color: var(--color-text-muted);
+  text-transform: uppercase;
   transition: color var(--transition-standard);
 }
 
-/* When a groove is active, label becomes bright */
+/* When a groove is active, label becomes accent color */
 .slider--has-content .slider__tab-label {
   color: var(--color-accent);
+  font-weight: 700;
 }
 
 /* ── Drawer — pinned to bottom, slides up via transform ── */
@@ -172,7 +170,7 @@
 .section h3 {
   font-size: var(--font-size-lg);
   font-weight: 600;
-  color: #c0b8a8; 
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-md);
 }
 
@@ -222,6 +220,7 @@
   overflow: hidden;
   border-radius: var(--radius-md);
   padding: var(--space-md);
+  border: 2px solid var(--color-accent);
 }
 
 .cv-entry--bg::before {
@@ -535,7 +534,7 @@
   text-transform: uppercase;
   color: var(--color-accent);
   text-decoration: none;
-  background: var(--color-accent-dim);
+  background: var(--color-bg-primary);
   outline: 1.5px solid var(--color-accent);
   outline-offset: 0px;
   grid-column: 1 / -1;

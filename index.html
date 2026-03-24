@@ -22,9 +22,9 @@
         <svg style="position:absolute;width:0;height:0;">
           <defs>
             <linearGradient id="chassis-bg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1a2420" />
-              <stop offset="50%" stop-color="#151d19" />
-              <stop offset="100%" stop-color="#111915" />
+              <stop offset="0%" stop-color="#EFECE6" />
+              <stop offset="50%" stop-color="#EAE7E1" />
+              <stop offset="100%" stop-color="#E4E1DB" />
             </linearGradient>
           </defs>
         </svg>
@@ -32,25 +32,25 @@
         <!-- Turntable SVG -->
         <svg class="turntable-svg" viewBox="0 0 1000 700" aria-label="Vinyl turntable with 3 navigable groove sections" role="img">
           <defs>
-            <!-- Platter surface gradient (dark vinyl) -->
+            <!-- Platter surface gradient (navy vinyl) -->
             <radialGradient id="vinyl-gradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%"  stop-color="#2a2a2a" />
-              <stop offset="60%" stop-color="#1a1a1a" />
-              <stop offset="100%" stop-color="#111" />
+              <stop offset="0%"  stop-color="#002A75" />
+              <stop offset="60%" stop-color="#001845" />
+              <stop offset="100%" stop-color="#001030" />
             </radialGradient>
 
-            <!-- Center label gradient (brushed metal) -->
+            <!-- Center label gradient (warm cream) -->
             <radialGradient id="label-gradient" cx="45%" cy="40%" r="55%">
-              <stop offset="0%"  stop-color="#e8e0d4" />
-              <stop offset="50%" stop-color="#c8bfb0" />
-              <stop offset="100%" stop-color="#a89f90" />
+              <stop offset="0%"  stop-color="#FFF8E8" />
+              <stop offset="50%" stop-color="#F0E4C8" />
+              <stop offset="100%" stop-color="#D8C8A0" />
             </radialGradient>
 
             <!-- Spindle highlight -->
             <radialGradient id="spindle-gradient" cx="40%" cy="35%" r="50%">
-              <stop offset="0%"  stop-color="#e0d8cc" />
-              <stop offset="70%" stop-color="#b8b0a0" />
-              <stop offset="100%" stop-color="#908878" />
+              <stop offset="0%"  stop-color="#505060" />
+              <stop offset="70%" stop-color="#3a3a48" />
+              <stop offset="100%" stop-color="#2a2a38" />
             </radialGradient>
 
             <!-- Platter edge shadow -->
@@ -87,7 +87,7 @@
           <rect class="chassis" x="0" y="0" width="1000" height="700" rx="8" fill="url(#chassis-bg)" />
 
           <!-- ── Platter well (recessed area) ── -->
-          <circle class="platter-well" cx="400" cy="350" r="310" fill="#0a0a0a" />
+          <circle class="platter-well" cx="400" cy="350" r="310" fill="#D5D1CB" />
 
           <!-- ── Spinning platter group ── -->
           <g class="platter" id="platter">
@@ -95,36 +95,32 @@
             <circle cx="400" cy="350" r="300" fill="url(#vinyl-gradient)" filter="url(#platter-shadow)" />
 
             <!-- Fine grooves (decorative texture) -->
-            <circle cx="400" cy="350" r="290" fill="none" stroke="#222" stroke-width="0.3" opacity="0.5" />
-            <circle cx="400" cy="350" r="280" fill="none" stroke="#1e1e1e" stroke-width="0.3" opacity="0.4" />
-            <circle cx="400" cy="350" r="240" fill="none" stroke="#222" stroke-width="0.3" opacity="0.4" />
-            <circle cx="400" cy="350" r="230" fill="none" stroke="#1e1e1e" stroke-width="0.3" opacity="0.3" />
-            <circle cx="400" cy="350" r="195" fill="none" stroke="#222" stroke-width="0.3" opacity="0.4" />
-            <circle cx="400" cy="350" r="185" fill="none" stroke="#1e1e1e" stroke-width="0.3" opacity="0.3" />
-            <circle cx="400" cy="350" r="150" fill="none" stroke="#222" stroke-width="0.3" opacity="0.3" />
-            <circle cx="400" cy="350" r="140" fill="none" stroke="#1e1e1e" stroke-width="0.3" opacity="0.3" />
-            <circle cx="400" cy="350" r="100" fill="none" stroke="#222" stroke-width="0.3" opacity="0.3" />
-
-            <!-- Easter egg micro-grooves (nearly invisible) -->
-            <circle class="groove-ring groove-ring--easter" data-groove="easter-egg-1" cx="400" cy="350" r="276" fill="none" stroke="#1c1c1c" stroke-width="0.5" opacity="0.2" />
-            <circle class="groove-ring groove-ring--easter" data-groove="easter-egg-2" cx="400" cy="350" r="45" fill="none" stroke="#1c1c1c" stroke-width="0.5" opacity="0.2" />
+            <circle cx="400" cy="350" r="290" fill="none" stroke="#003090" stroke-width="0.3" opacity="0.5" />
+            <circle cx="400" cy="350" r="280" fill="none" stroke="#002870" stroke-width="0.3" opacity="0.4" />
+            <circle cx="400" cy="350" r="240" fill="none" stroke="#003090" stroke-width="0.3" opacity="0.4" />
+            <circle cx="400" cy="350" r="230" fill="none" stroke="#002870" stroke-width="0.3" opacity="0.3" />
+            <circle cx="400" cy="350" r="195" fill="none" stroke="#003090" stroke-width="0.3" opacity="0.4" />
+            <circle cx="400" cy="350" r="185" fill="none" stroke="#002870" stroke-width="0.3" opacity="0.3" />
+            <circle cx="400" cy="350" r="150" fill="none" stroke="#003090" stroke-width="0.3" opacity="0.3" />
+            <circle cx="400" cy="350" r="140" fill="none" stroke="#002870" stroke-width="0.3" opacity="0.3" />
+            <circle cx="400" cy="350" r="100" fill="none" stroke="#003090" stroke-width="0.3" opacity="0.3" />
 
             <!-- ═══ 3 Main groove rings ═══ -->
             <!-- Groove 1: INTRO (outermost) -->
             <circle class="groove-ring" data-groove="intro" cx="400" cy="350" r="255"
-              fill="none" stroke="#333" stroke-width="1" opacity="0.6" />
+              fill="none" stroke="#3a5090" stroke-width="1" opacity="0.6" />
             <circle class="groove-ring__hitarea" data-groove="intro" cx="400" cy="350" r="255"
               fill="none" stroke="transparent" stroke-width="20" />
 
             <!-- Groove 2: CV -->
             <circle class="groove-ring" data-groove="cv" cx="400" cy="350" r="210"
-              fill="none" stroke="#333" stroke-width="1" opacity="0.6" />
+              fill="none" stroke="#3a5090" stroke-width="1" opacity="0.6" />
             <circle class="groove-ring__hitarea" data-groove="cv" cx="400" cy="350" r="210"
               fill="none" stroke="transparent" stroke-width="20" />
 
             <!-- Groove 3: PORTFOLIO -->
             <circle class="groove-ring" data-groove="portfolio" cx="400" cy="350" r="165"
-              fill="none" stroke="#333" stroke-width="1" opacity="0.6" />
+              fill="none" stroke="#3a5090" stroke-width="1" opacity="0.6" />
             <circle class="groove-ring__hitarea" data-groove="portfolio" cx="400" cy="350" r="165"
               fill="none" stroke="transparent" stroke-width="20" />
 
@@ -133,13 +129,13 @@
             <image href="/Pictures/CV-Pictures/Vinyl_Picture.jpg"
               x="340" y="290" width="120" height="120"
               clip-path="url(#label-clip)" preserveAspectRatio="xMidYMid slice" />
-            <circle cx="400" cy="350" r="60" fill="none" stroke="#b0a898" stroke-width="1" opacity="0.6" />
+            <circle cx="400" cy="350" r="60" fill="none" stroke="#D8C8A0" stroke-width="1" opacity="0.6" />
           </g>
 
           <!-- ── Spindle (does not spin) ── -->
           <circle cx="400" cy="350" r="6" fill="url(#spindle-gradient)" />
-          <circle cx="400" cy="350" r="2.5" fill="#d0c8bc" />
-          <circle cx="399" cy="349" r="1" fill="#e8e0d4" opacity="0.8" />
+          <circle cx="400" cy="350" r="2.5" fill="#404050" />
+          <circle cx="399" cy="349" r="1" fill="#585868" opacity="0.8" />
 
           <!-- ── Groove labels (non-rotating overlay) ── -->
           <g class="groove-labels" id="groove-labels">
@@ -157,43 +153,44 @@
           <!-- ── Tonearm assembly ── -->
           <!-- Fixed pivot base (does NOT rotate) -->
           <g class="tonearm-base" id="tonearm-base">
-            <rect class="tonearm__pivot-base" x="740" y="55" width="50" height="60" rx="6" fill="#c8c0b4" />
-            <rect x="748" y="65" width="34" height="40" rx="3" fill="#b8b0a0" />
-            <circle cx="765" cy="85" r="8" fill="#a89f90" />
-            <circle cx="765" cy="85" r="4" fill="#c8c0b4" />
-            <circle class="tonearm__pivot" cx="765" cy="85" r="3" fill="#d0c8bc" />
+            <rect class="tonearm__pivot-base" x="740" y="55" width="50" height="60" rx="6" fill="#3a3a48" />
+            <rect x="748" y="65" width="34" height="40" rx="3" fill="#2e2e3c" />
+            <circle cx="765" cy="85" r="8" fill="#252534" />
+            <circle cx="765" cy="85" r="4" fill="#3a3a48" />
+            <circle class="tonearm__pivot" cx="765" cy="85" r="3" fill="#505060" />
           </g>
 
           <!-- Rotating arm (rotates around pivot) -->
           <g class="tonearm" id="tonearm" filter="url(#tonearm-shadow)" tabindex="0" role="slider" aria-label="Tonearm – drag to select a section" aria-valuemin="1" aria-valuemax="3" aria-valuenow="0" aria-valuetext="Parked">
             <!-- Counterweight (behind pivot) -->
-            <ellipse class="tonearm__counterweight" cx="765" cy="60" rx="10" ry="7" fill="#b0a898" />
-            <ellipse cx="765" cy="58" rx="6" ry="4" fill="#c8c0b4" opacity="0.5" />
+            <ellipse class="tonearm__counterweight" cx="765" cy="60" rx="10" ry="7" fill="#2e2e3c" />
+            <ellipse cx="765" cy="58" rx="6" ry="4" fill="#505060" opacity="0.5" />
 
             <!-- Arm tube -->
-            <line class="tonearm__arm" x1="765" y1="85" x2="765" y2="520" stroke="#c0b8a8" stroke-width="4" stroke-linecap="round" />
-            <line x1="765" y1="85" x2="765" y2="520" stroke="#d8d0c4" stroke-width="1.5" stroke-linecap="round" opacity="0.4" />
+            <line class="tonearm__arm" x1="765" y1="85" x2="765" y2="520" stroke="#3a3a48" stroke-width="4" stroke-linecap="round" />
+            <line x1="765" y1="85" x2="765" y2="520" stroke="#585868" stroke-width="1.5" stroke-linecap="round" opacity="0.4" />
 
             <!-- Headshell / cartridge -->
-            <rect class="tonearm__headshell" x="755" y="520" width="20" height="30" rx="2" fill="#c0b8a8" />
-            <rect x="759" y="525" width="12" height="18" rx="1" fill="#b0a898" />
+            <rect class="tonearm__headshell" x="755" y="520" width="20" height="30" rx="2" fill="#3a3a48" />
+            <rect x="759" y="525" width="12" height="18" rx="1" fill="#2e2e3c" />
 
             <!-- Stylus tip (needle) -->
-            <line class="tonearm__stylus" x1="765" y1="550" x2="765" y2="558" stroke="#a89f90" stroke-width="1.5" stroke-linecap="round" />
-            <circle class="tonearm__needle-tip" id="needle-tip" cx="765" cy="558" r="2" fill="#d0c8bc" />
+            <line class="tonearm__stylus" x1="765" y1="550" x2="765" y2="558" stroke="#2e2e3c" stroke-width="1.5" stroke-linecap="round" />
+            <circle class="tonearm__needle-tip" id="needle-tip" cx="765" cy="558" r="2" fill="#505060" />
           </g>
 
           <!-- ── Chassis details ── -->
           <!-- Top-left power indicator -->
-          <line x1="40" y1="60" x2="80" y2="60" stroke="#888" stroke-width="2" stroke-linecap="round" opacity="0.4" />
+          <line x1="40" y1="60" x2="80" y2="60" stroke="#7A7A8E" stroke-width="2" stroke-linecap="round" opacity="0.4" />
         </svg>
+
 
       </section>
 
       <!-- ── Content Slider ── -->
       <div class="slider" id="slider">
         <button class="slider__tab" id="slider-tab" aria-label="Open content drawer">
-          <span class="slider__tab-label" id="slider-label">MOVE NEEDLE TO START</span>
+          <span class="slider__tab-label" id="slider-label">Move Needle to Start</span>
         </button>
         <div class="slider__drawer" id="slider-drawer">
           <button class="slider__tab slider__tab--top" id="slider-close" aria-label="Close content drawer">
@@ -207,7 +204,7 @@
     <script type="module" src="/src/main.js"></script>
 
     <noscript>
-      <p style="color: #F5F5F5; text-align: center; padding: 2rem; font-family: system-ui;">
+      <p style="color: #1A1A2E; text-align: center; padding: 2rem; font-family: system-ui;">
         This portfolio requires JavaScript to run. Please enable JavaScript in your browser.
       </p>
     </noscript>

@@ -13,15 +13,10 @@ import { setState, getState } from './state.js';
 import introHtml from '../content/intro.html?raw';
 import cvHtml from '../content/cv.html?raw';
 import portfolioHtml from '../content/portfolio.html?raw';
-import egg1Html from '../content/easter-egg-1.html?raw';
-import egg2Html from '../content/easter-egg-2.html?raw';
-
 const contentMap = {
   'intro': introHtml,
   'cv': cvHtml,
   'portfolio': portfolioHtml,
-  'easter-egg-1': egg1Html,
-  'easter-egg-2': egg2Html,
 };
 
 // DOM references

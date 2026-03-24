@@ -20,12 +20,7 @@ export const GROOVES = [
   { id: 'portfolio',     label: 'PORTFOLIO',      radius: 165 },
 ];
 
-export const EASTER_EGGS = [
-  { id: 'easter-egg-1', radius: 276 },
-  { id: 'easter-egg-2', radius: 45  },
-];
-
-const ALL_RINGS = [...GROOVES, ...EASTER_EGGS];
+const ALL_RINGS = [...GROOVES];
 
 /**
  * Find which groove a point (in SVG coordinates) is over.
