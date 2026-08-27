@@ -30,3 +30,16 @@
 .tonearm.is-over-groove .tonearm__needle-tip {
   fill: var(--color-accent);
 }
+
+/* ── Touch hit area ──
+   Transparent, rotates with the arm. Only enabled on coarse pointers so it
+   never steals hover/clicks from the grooves on desktop. */
+.tonearm__hitarea {
+  pointer-events: none;
+}
+
+@media (pointer: coarse) {
+  .tonearm__hitarea {
+    pointer-events: stroke;
+  }
+}

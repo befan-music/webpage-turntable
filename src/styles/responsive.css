@@ -1,15 +1,297 @@
+/* ══════════════════════════════════════════════
+   Responsive — tablet & mobile overrides
+   ══════════════════════════════════════════════ */
+
 /* ── Tablet (≤1024px) ── */
 @media (max-width: 1024px) {
   .groove-label {
     font-size: 7px;
     letter-spacing: 3px;
   }
+
+  /* Deck shrinks but keeps its landscape ratio */
+  .pf-stack {
+    width: min(585px, 88vw);
+    height: min(360px, calc(88vw * 0.6154));
+  }
 }
 
-/* ── Mobile (≤768px) ── */
+/* ══════════════════════════════════════════════
+   Mobile (≤768px)
+   ══════════════════════════════════════════════ */
 @media (max-width: 768px) {
+
+  /* ── Dynamic viewport height ──
+     Mobile browsers grow/shrink their toolbars, so 100vh overflows and
+     pushes fixed bottom UI under the chrome. dvh tracks the real area. */
+  #app {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  /* Centre the width-bound SVG vertically instead of pinning it to the top,
+     so the leftover height is split evenly rather than dumped below the disc. */
+  .zone-a {
+    padding-top: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ══════════════════════════════════════════
+     1. Bigger vinyl disc
+     ══════════════════════════════════════════
+     The 1000x700 viewBox centers the platter at cx=400 (left of centre)
+     leaving a dead right third. Scaling up and shifting the artwork right
+     fills the portrait screen with the disc instead of letterboxing it. */
+  /* The viewBox itself is cropped to the platter on mobile (see
+     js/turntable.js) so the disc scales up without a CSS transform —
+     this keeps groove-label text scaling with the artwork. */
+  .turntable-svg {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+
+  /* Groove labels sit inside the SVG, so their px size is multiplied by the
+     viewBox scale (~0.55 on a 390px phone). The desktop 9px would paint at ~5px;
+     16px paints at ~9px, which is legible on the vinyl. */
   .groove-label {
-    font-size: 6px;
+    font-size: 16px;
+    letter-spacing: 5px;
+    opacity: 0.95;
+  }
+
+  /* ══════════════════════════════════════════
+     2. Slider tab visible above browser chrome
+     ══════════════════════════════════════════
+     The tab is clip-path'd so only its lower 60% paints. A short box made
+     the visible strip ~25px and hid the label. Taller box + safe-area
+     padding keeps the hump and text clear of the home indicator. */
+  .slider {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .slider__tab {
+    height: calc(7vh + 34px);
+    min-height: 76px;
+    padding-bottom: calc(1vh + 6px + env(safe-area-inset-bottom, 0px));
+    /* Flatter, wider hump — a narrow one gets lost at phone widths */
+    clip-path: polygon(
+      0% 45%,
+      22% 45%,
+      26% 43%, 30% 36%, 34% 26%, 38% 15%, 42% 7%, 46% 2%, 50% 0%,
+      54% 2%, 58% 7%, 62% 15%, 66% 26%, 70% 36%, 74% 43%,
+      78% 45%,
+      100% 45%,
+      100% 100%, 0% 100%
+    );
+    box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.16);
+  }
+
+  .slider__tab-label {
+    font-size: var(--font-size-sm);
     letter-spacing: 2px;
+    padding: 0 var(--space-md);
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .slider__tab--top {
+    height: calc(6vh + 30px);
+    min-height: 64px;
+    padding-top: calc(1vh + 6px + env(safe-area-inset-top, 0px));
+    padding-bottom: 0;
+    clip-path: polygon(
+      0% 0%, 100% 0%,
+      100% 55%,
+      78% 55%,
+      74% 57%, 70% 64%, 66% 74%, 62% 85%, 58% 93%, 54% 98%, 50% 100%,
+      46% 98%, 42% 93%, 38% 85%, 34% 74%, 30% 64%, 26% 57%,
+      22% 55%,
+      0% 55%
+    );
+  }
+
+  .slider__drawer {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .slider__body {
+    padding: var(--space-md) var(--space-md);
+    padding-bottom: calc(var(--space-xl) + env(safe-area-inset-bottom, 0px));
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ══════════════════════════════════════════
+     3. Portfolio cards keep the desktop ratio
+     ══════════════════════════════════════════
+     Landscape rectangle (wider than tall) preserved via aspect-ratio,
+     matching the desktop 585x360 (~1.625:1). The two-column split is
+     kept so the shape reads the same — image column just narrows. */
+  /* Centre the deck in the drawer; the extra top/bottom room leaves space for
+     the peeking back-cards above and the horizontal nav rail below. */
+  .section--portfolio {
+    min-height: 100%;
+    align-items: center;
+    padding: calc(var(--space-xl) + 30px) var(--space-sm) calc(var(--space-xl) + 24px);
+  }
+
+  .pf-stack {
+    width: min(92vw, 460px);
+    height: auto;
+    aspect-ratio: 585 / 360;
+    /* Desktop uses margin:auto to centre; in this flex column that auto margin
+       eats all the free space and pushes the deck down. Centre via flex instead. */
+    margin: 0 auto;
+  }
+
+  .pf-card {
+    /* Inset:0 + aspect-ratio parent => card inherits the landscape ratio */
+    grid-template-columns: 1.25fr 1fr;
+    border-width: 1.5px;
+  }
+
+  /* Tighter back-card offsets so they stay on screen */
+  .pf-card[data-pf-depth="1"] { transform: translate(9px, -13px) scale(0.96); }
+  .pf-card[data-pf-depth="2"] { transform: translate(18px, -26px) scale(0.92); }
+  .pf-card[data-pf-depth="3"] { transform: translate(26px, -38px) scale(0.88); }
+
+  .pf-card__body {
+    padding: var(--space-sm) var(--space-sm) var(--space-xs) var(--space-md);
+    min-width: 0;
+  }
+
+  .pf-card__header {
+    gap: var(--space-xs);
+    margin-bottom: var(--space-xs);
+  }
+
+  .pf-card__counter {
+    width: 22px;
+    height: 22px;
+    font-size: 0.6rem;
+  }
+
+  .pf-card__name {
+    font-size: 0.82rem;
+    line-height: 1.15;
+  }
+
+  .pf-card__content {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pf-card__panel-title {
+    font-size: 0.55rem;
+  }
+
+  .pf-card__desc {
+    font-size: 0.68rem;
+    line-height: 1.4;
+  }
+
+  /* Tab strip: shrink tracks so the label keeps its room */
+  .pf-card__tabs {
+    gap: 4px;
+  }
+
+  .pf-card__tabs-arrow {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+  }
+
+  .pf-card__tabs-label {
+    font-size: 0.55rem;
+    min-width: 52px;
+  }
+
+  /* Link button sits over the image half */
+  /* Constrain to the card so the pill can't spill past the rounded edge */
+  .pf-card__link {
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+    padding: 6px 10px;
+    font-size: 0.56rem;
+    letter-spacing: 0.3px;
+    max-width: calc(100% - var(--space-md));
+    white-space: nowrap;
+  }
+
+  /* Nav rail moves below the deck — no horizontal room beside it */
+  .pf-nav {
+    right: 50%;
+    top: auto;
+    bottom: -46px;
+    transform: translateX(50%);
+    flex-direction: row;
+    gap: var(--space-md);
+  }
+
+  .pf-nav__arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 13px;
+  }
+
+  /* Rotate chevrons to match the horizontal rail:
+     up/previous points left, down/next points right */
+  .pf-nav__arrow--up,
+  .pf-nav__arrow--down {
+    transform: rotate(-90deg);
+  }
+}
+
+/* ── Small phones (≤400px) ── */
+@media (max-width: 400px) {
+  .pf-card__name { font-size: 0.76rem; }
+  .pf-card__desc { font-size: 0.64rem; }
+  .pf-card__body { padding: var(--space-xs) var(--space-xs) var(--space-xs) var(--space-sm); }
+  .pf-card__link { padding: 5px 10px; font-size: 0.54rem; }
+}
+
+/* ── Landscape phones: short viewport, keep the disc from overflowing ── */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+  /* viewBox is already cropped on mobile; in a short landscape viewport the SVG
+     becomes height-bound, so just let it fit without an extra transform. */
+  .turntable-svg {
+    width: auto;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .slider__tab {
+    height: calc(9vh + 26px);
+    min-height: 58px;
+  }
+
+  /* Height-constrained here: derive the width from the height so the
+     585:360 landscape ratio is preserved rather than squashed. */
+  .pf-stack {
+    width: auto;
+    height: min(62vh, 300px);
+    aspect-ratio: 585 / 360;
+    max-width: 92vw;
+  }
+
+  .section--portfolio {
+    padding-top: var(--space-lg);
+  }
+
+  .pf-nav {
+    right: -44px;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .pf-nav__arrow--up,
+  .pf-nav__arrow--down {
+    transform: none;
   }
 }
