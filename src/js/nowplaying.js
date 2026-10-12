@@ -7,14 +7,14 @@
 const ENDPOINT = '/api/now-playing';
 const POLL_MS = 30_000;
 
-const relative = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+// Compact labels: "9 min ago", "3 h ago", "2 d ago"
 const UNITS = [
-  ['year', 31_536_000_000],
-  ['month', 2_592_000_000],
-  ['week', 604_800_000],
-  ['day', 86_400_000],
-  ['hour', 3_600_000],
-  ['minute', 60_000],
+  ['y', 31_536_000_000],
+  ['mo', 2_592_000_000],
+  ['w', 604_800_000],
+  ['d', 86_400_000],
+  ['h', 3_600_000],
+  ['min', 60_000],
 ];
 
 let el = null;
@@ -74,7 +74,7 @@ function render(track) {
   if (track.nowPlaying) {
     el.status.innerHTML = '<span class="now-playing__dot" aria-hidden="true"></span>Live';
   } else {
-    el.status.textContent = track.playedAt ? `played ${timeAgo(track.playedAt)}` : 'recently played';
+    el.status.textContent = track.playedAt ? timeAgo(track.playedAt) : 'recently';
   }
 
   last = { key };
@@ -93,9 +93,9 @@ function showArt(url) {
 }
 
 function timeAgo(timestamp) {
-  const diff = timestamp - Date.now(); // negative = in the past
+  const elapsed = Math.max(0, Date.now() - timestamp);
   for (const [unit, ms] of UNITS) {
-    if (Math.abs(diff) >= ms) return relative.format(Math.round(diff / ms), unit);
+    if (elapsed >= ms) return `${Math.floor(elapsed / ms)} ${unit} ago`;
   }
   return 'just now';
 }
