@@ -145,8 +145,9 @@
 
 .now-playing__info {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
-  min-width: 0;
+  min-width: 0; /* lets long titles ellipsize instead of pushing past the card */
 }
 
 .now-playing__track,
@@ -177,10 +178,11 @@
   white-space: nowrap;
 }
 
+/* Plain block (blockified flex item) so text-overflow can ellipsize it */
 .now-playing__status {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .now-playing.is-live .now-playing__status {
@@ -191,6 +193,9 @@
 }
 
 .now-playing__dot {
+  display: inline-block;
+  vertical-align: 1px;
+  margin-right: 5px;
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -206,6 +211,7 @@
 }
 
 .now-playing__brand {
+  flex-shrink: 0;
   margin-left: auto;
   font-weight: 600;
   color: var(--color-text-muted);
