@@ -1,9 +1,17 @@
 /* ── Turntable SVG ── */
 .turntable-svg {
+  position: relative; /* stack above the .turntable-glass panel */
   width: 100%;
   height: 82%;
   max-height: 82%;
   display: block;
+}
+
+/* .zone-a is pointer-transparent; the chassis and everything drawn on it take
+   the pointer back so the turntable stays interactive and blocks the blurred
+   tiles beneath it. Descendants with their own pointer-events rule keep it. */
+.turntable-svg > * {
+  pointer-events: visiblePainted;
 }
 
 /* ── Platter Spin ── */
@@ -20,6 +28,7 @@
 /* ── Platter Well ── */
 .platter-well {
   filter: drop-shadow(inset 0 0 10px rgba(0,0,0,0.5));
+  fill-opacity: 0.6;
 }
 
 /* ── Groove Rings ── */
@@ -75,8 +84,138 @@
 .chassis {
   /* Fallback if gradient fails */
   fill: var(--color-bg-primary);
+  /* Translucent so the blurred mosaic behind (.turntable-glass) shows through */
+  fill-opacity: 0.45;
   stroke: var(--color-accent);
   stroke-width: 2;
+}
+
+/* ── Chassis overlay (HTML widgets on the deck) ── */
+.turntable-overlay {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* ── Now playing (last.fm) — bottom-right corner of the chassis ── */
+.now-playing {
+  position: absolute;
+  right: 2.2%;
+  bottom: 3%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: min(250px, 26%);
+  padding: 8px 12px 8px 8px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-bg-primary) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-text-muted) 22%, transparent);
+  font-family: var(--font-family);
+  line-height: 1.25;
+  pointer-events: auto;
+}
+
+.now-playing[hidden] {
+  display: none;
+}
+
+.now-playing__art {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  box-shadow: var(--shadow-soft);
+}
+
+/* reset.css sets img { display: block }, which beats the UA [hidden] rule */
+.now-playing__art[hidden] {
+  display: none;
+}
+
+/* No cover from last.fm: a tiny navy record, matching the platter */
+.now-playing__art--empty {
+  display: block;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #D8C8A0 0 3px, transparent 3.5px),
+    radial-gradient(circle, #F0E4C8 0 9px, transparent 9.5px),
+    repeating-radial-gradient(circle, #001845 0 2px, #002060 2px 3px);
+}
+
+.now-playing__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.now-playing__track,
+.now-playing__artist {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.now-playing__track {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.now-playing__artist {
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+}
+
+.now-playing__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+  font-size: 0.64rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.now-playing__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.now-playing.is-live .now-playing__status {
+  color: #D51007; /* last.fm red */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.now-playing__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #E31B23;
+  box-shadow: 0 0 0 0 rgba(227, 27, 35, 0.6);
+  animation: live-pulse 1.8s ease-out infinite;
+}
+
+@keyframes live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(227, 27, 35, 0.55); }
+  70%  { box-shadow: 0 0 0 6px rgba(227, 27, 35, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(227, 27, 35, 0); }
+}
+
+.now-playing__brand {
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.now-playing__brand:hover,
+.now-playing__brand:focus-visible {
+  color: #D51007;
 }
 
 /* ── Color Mode Toggle ── */

@@ -17,13 +17,17 @@ import { initContent } from './js/content.js';
 import { initControls } from './js/controls.js';
 import { initParticles } from './js/particles.js';
 import { initSound } from './js/sound.js';
+import { initBackground } from './js/background.js';
+import { initNowPlaying } from './js/nowplaying.js';
 
 // ── Initialize ──
 document.addEventListener('DOMContentLoaded', () => {
   initTurntable();
+  initBackground();
   initTonearm();
   initContent();
   initControls();
   initParticles();
   initSound();
+  initNowPlaying();
 });

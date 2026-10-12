@@ -15,8 +15,14 @@
     <a href="#content-zone" class="sr-only">Skip to content</a>
 
     <div id="app">
+      <!-- ── Background photo mosaic (filled by js/background.js) ── -->
+      <div class="bg-mosaic" id="bg-mosaic" role="region" aria-label="Picture wall"></div>
+
       <!-- ── Zone A: Turntable ── -->
       <section class="zone-a" id="turntable-zone" role="application" aria-label="Interactive turntable navigation">
+
+        <!-- Frosted glass behind the chassis — blurs the mosaic beneath it -->
+        <div class="turntable-glass" id="turntable-glass" aria-hidden="true"></div>
 
         <!-- Chassis background gradient (must be defined before main SVG references it) -->
         <svg style="position:absolute;width:0;height:0;">
@@ -188,7 +194,22 @@
           <line x1="40" y1="60" x2="80" y2="60" stroke="#7A7A8E" stroke-width="2" stroke-linecap="round" opacity="0.4" />
         </svg>
 
-
+        <!-- HTML overlay pinned to the chassis rect (sized by js/background.js) -->
+        <div class="turntable-overlay" id="turntable-overlay">
+          <!-- Last scrobbled song (js/nowplaying.js) -->
+          <div class="now-playing" id="now-playing" aria-live="polite" hidden>
+            <img class="now-playing__art" id="now-playing-art" alt="" width="40" height="40" hidden />
+            <span class="now-playing__art now-playing__art--empty" id="now-playing-noart" aria-hidden="true"></span>
+            <div class="now-playing__info">
+              <span class="now-playing__track" id="now-playing-track"></span>
+              <span class="now-playing__artist" id="now-playing-artist"></span>
+              <span class="now-playing__meta">
+                <span class="now-playing__status" id="now-playing-status"></span>
+                <a class="now-playing__brand" href="https://www.last.fm/" target="_blank" rel="noopener noreferrer">last.fm</a>
+              </span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- ── Content Slider ── -->
