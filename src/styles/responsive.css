@@ -61,6 +61,20 @@
     opacity: 0.95;
   }
 
+  /* The cropped viewBox leaves no free corner on the deck — the vinyl reaches
+     the edges — so the last.fm card drops just below the turntable instead,
+     onto the picture wall, with its own frosted backing. */
+  .now-playing {
+    top: calc(100% + 12px);
+    bottom: auto;
+    right: 16px;
+    max-width: calc(100% - 32px);
+    background: color-mix(in srgb, var(--color-bg-primary) 70%, transparent);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-soft);
+  }
+
   /* ══════════════════════════════════════════
      2. Slider tab visible above browser chrome
      ══════════════════════════════════════════

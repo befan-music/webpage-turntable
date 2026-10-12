@@ -12,6 +12,7 @@
   --color-text-primary: #F5F5F5;
   --color-text-secondary: #D0D0D0;
   --color-text-muted: #888;
+  --color-mosaic-bg: #0F1215;
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-strong: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
