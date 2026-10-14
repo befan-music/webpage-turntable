@@ -516,6 +516,24 @@
   border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
 }
 
+/* Showcase variant: screenshot as a soft backdrop, product art floating on top */
+.pf-card__image--showcase > img:first-child {
+  filter: blur(2px) brightness(0.55);
+  transform: scale(1.04); /* hides the blur's soft edge */
+}
+
+.pf-card__image .pf-card__overlay {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  width: auto;
+  height: 68%;
+  object-fit: contain;
+  border-radius: 7px;
+  transform: translateX(-50%) rotate(-4deg);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5);
+}
+
 /* ── Link button (overlaid on bottom-right of card, over the image half) ── */
 .pf-card__link {
   position: absolute;
